@@ -42,17 +42,13 @@
 <h1>Morse code translator</h1>
 
 <div>
-    <form action="/action_page.php">
+    <form action="/action_page.php" method="get">
         <label for="text1">Enter text you want to translate: </label>
-        <input type="text" id="tex1" name="text1" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$">
-<label for="x">Output:</label>
-        <output type="text" name="x" ></output><br><br>
+        <input type="text" name="name" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$">
 
-        <label for="text2">Enter text you want to translate: </label>
-        <input type="text" id="tex2" name="lastname" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$">
-        </select>
-        <small>Drop your file here: </small><br><br>
-        <input type="submit" value="Submit">
+        Output: <?php echo $_GET["name"]; ?><br>
+
+        <input type="submit">
     </form>
 </div>
 
@@ -103,10 +99,10 @@ $convert = function($carry, $item) {
         "?" => "..--..",
         "/" => "-..-.",
         " " => " ");
-    
+
     $morse = $table[$item];
-    
-      return $carry . $morse;
+
+    return $carry . $morse;
 };
 
 echo array_reduce(str_split('human'), $convert);
