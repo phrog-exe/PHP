@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <style>
-    
+
     input[type=text], select {
         width: 100%;
         padding: 12px 20px;
@@ -44,10 +44,12 @@
 <div>
     <form action="/action_page.php">
         <label for="text1">Enter text you want to translate: </label>
-        <input type="text" id="tex1" name="text1" placeholder="Enter text here" pattern="[A-Za-z]">
+        <input type="text" id="tex1" name="text1" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$">
+<label for="x">Output:</label>
+        <output type="text" name="x" ></output><br><br>
 
         <label for="text2">Enter text you want to translate: </label>
-        <input type="text" id="tex2" name="lastname" placeholder="Enter text here" pattern="[A-Za-z]">
+        <input type="text" id="tex2" name="lastname" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$">
         </select>
         <small>Drop your file here: </small><br><br>
         <input type="submit" value="Submit">
@@ -58,50 +60,53 @@
 </html>
 
 <?php
-$string = "dog";
-$string_lower = strtolower($string);
-$assoc_array = array(
-    "a"=>".-",
-    "b"=>"-...",
-    "c"=>"-.-.",
-    "d"=>"-..",
-    "e"=>".",
-    "f"=>"..-.",
-    "g"=>"--.",
-    "h"=>"....",
-    "i"=>"..",
-    "j"=>".---",
-    "k"=>"-.-",
-    "l"=>".-..",
-    "m"=>"--",
-    "n"=>"-.",
-    "o"=>"---",
-    "p"=>".--.",
-    "q"=>"--.-",
-    "r"=>".-.",
-    "s"=>"...",
-    "t"=>"-",
-    "u"=>"..-",
-    "v"=>"...-",
-    "w"=>".--",
-    "x"=>"-..-",
-    "y"=>"-.--",
-    "z"=>"--..",
-    "0"=>"-----",
-    "1"=>".----",
-    "2"=>"..---",
-    "3"=>"...--",
-    "4"=>"....-",
-    "5"=>".....",
-    "6"=>"-....",
-    "7"=>"--...",
-    "8"=>"---..",
-    "9"=>"----.",
-    "."=>".-.-.-",
-    ","=>"--..--",
-    "?"=>"..--..",
-    "/"=>"-..-.",
-    " "=>" ");
-for($i=0;$i<strlen($string_lower);$i++){
-    echo (isset($assoc_array[$string_lower[$i]])) ? $assoc_array[$string_lower[$i]] . '<br />' : 'ERROR';
-}
+$convert = function($carry, $item) {
+    $table = array(
+        "a" => ".-",
+        "b" => "-...",
+        "c" => "-.-.",
+        "d" => "-..",
+        "e" => ".",
+        "f" => "..-.",
+        "g" => "--.",
+        "h" => "....",
+        "i" => "..",
+        "j" => ".---",
+        "k" => "-.-",
+        "l" => ".-..",
+        "m" => "--",
+        "n" => "-.",
+        "o" => "---",
+        "p" => ".--.",
+        "q" => "--.-",
+        "r" => ".-.",
+        "s" => "...",
+        "t" => "-",
+        "u" => "..-",
+        "v" => "...-",
+        "w" => ".--",
+        "x" => "-..-",
+        "y" => "-.--",
+        "z" => "--..",
+        "0" => "-----",
+        "1" => ".----",
+        "2" => "..---",
+        "3" => "...--",
+        "4" => "....-",
+        "5" => ".....",
+        "6" => "-....",
+        "7" => "--...",
+        "8" => "---..",
+        "9" => "----.",
+        "." => ".-.-.-",
+        "," => "--..--",
+        "?" => "..--..",
+        "/" => "-..-.",
+        " " => " ");
+    
+    $morse = $table[$item];
+    
+      return $carry . $morse;
+};
+
+echo array_reduce(str_split('human'), $convert);
