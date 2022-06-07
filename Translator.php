@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style>
+    body {
+        background: linear-gradient(-45deg, #87E879, #E1A6E3, #BF90E8,#8AC1E3);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        height: 100vh;
+    }
+
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+
+    }
 
     input[type=text], select {
-        width: 100%;
+        width: 30%;
         padding: 12px 20px;
         margin: 8px 0;
         display: inline-block;
@@ -25,7 +46,7 @@
         cursor: pointer;
     }
     input[type=text]:focus {
-        background-color: lightblue;
+        background-color: dodgerblue;
 
     input[type=submit]:hover {
         background-color: #45a049;
@@ -35,20 +56,27 @@
         border-radius: 5px;
         background-color: #f2f2f2;
         padding: 20px;
+
     }
+
+
+
+
 </style>
+
 <body>
+
 
 <h1>Morse code translator</h1>
 
 <div>
-    <form action="/action_page.php" method="get">
-        <label for="text1">Enter text you want to translate: </label>
-        <input type="text" name="name" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$">
 
-        Output: <?php echo $_GET["name"]; ?><br>
+    <form action="/action_page.php" method="POST">
+        <button><span>Home</span></button><button><span>Morse code</span></button><button><span>Caesar code</span></button><br><br>
+        <label for="text1">Enter text you want to translate: </label><br>
+        <input type="text" name="text" id="text" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$"><br>
+        <input type="submit" name="submit" id="submit" value="Submit" />
 
-        <input type="submit">
     </form>
 </div>
 
@@ -56,6 +84,7 @@
 </html>
 
 <?php
+
 $convert = function($carry, $item) {
     $table = array(
         "a" => ".-",
