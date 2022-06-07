@@ -84,6 +84,7 @@
         <label for="text1">Enter text you want to translate: </label><br>
         <input type="text" name="text" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$"><br>
 
+
 <input type="submit" value="Submit">
 
     </form>
@@ -104,9 +105,6 @@ if($phrase == "") {
     echo '<script>alert("The input must not be empty!")</script>';
 
 } else
-
-echo "Morse code: ";
-
 
 $convert = function($carry, $item) {
     $table = array(
@@ -183,5 +181,7 @@ $convert = function($carry, $item) {
     return $carry . $morse;
 };
 
-echo array_reduce(str_split("$phrase"), $convert);
 ?>
+<html>
+<input type="text" value="<?php echo array_reduce(str_split("$phrase"), $convert); ?>" />
+</html>
