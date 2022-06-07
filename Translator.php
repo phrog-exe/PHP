@@ -80,7 +80,8 @@
 
         <input class="button1" type ="button" value="Morse code" onclick=""><input type ="button" value="Caesar cipher" onclick=""><input type ="button" value="Affine cipher" onclick=""><br><br>
         <label for="text1">Enter text you want to encode: </label><br><br>
-        <textarea name="text" placeholder="Enter text here..." rows="10" cols="30"></textarea><br>
+        <textarea name="text1" id="text1" placeholder="Hello World" rows="10" cols="30"></textarea>&nbsp &nbsp &nbsp
+        <textarea name="text2" id="text2" rows="10" cols="30" placeholder=".... . .-.. .-.. --- / .-- --- .-. .-.. -.."></textarea><br>
 
         <input type="submit" value="Submit"><br>
 
@@ -97,9 +98,9 @@
 
 <?php
 
-if(isset($_GET['text'])){
+if(isset($_GET['text1'])){
 
-    $phrase=$_GET["text"];
+    $phrase=$_GET["text1"];
 
     if($phrase == "") {
 
@@ -185,8 +186,9 @@ if(isset($_GET['text'])){
     };
 }
 ?>
-<html>
-<!--input class="article-input" id="article-input" type="text" rows="5" value="<?php echo array_reduce(str_split("$phrase"), $convert); ?>" /-->
-<textarea class="article-input" id="article-input" type="text" rows="10" cols="30" ><?php echo array_reduce(str_split("$phrase"), $convert); ?></textarea>
+<html><script>
+    document.getElementById('text2').value ="<?php echo array_reduce(str_split("$phrase"), $convert); ?>";
+
+</script>
 
 </html>
