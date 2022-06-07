@@ -64,8 +64,6 @@
     }
 
 
-
-
 </style>
 
 
@@ -73,7 +71,7 @@
 
 <body>
 
-<h1>CIPHER DECODER</h1>
+<h1>CIPHER ENCODER / DECODER</h1>
 
 <div>
     <form method="get" action="">
@@ -81,9 +79,10 @@
 
 
         <input class="button1" type ="button" value="Morse code" onclick=""><input type ="button" value="Caesar cipher" onclick=""><input type ="button" value="Affine cipher" onclick=""><br><br>
-        <label for="text1">Enter text you want to translate: </label><br>
-        <input type="text" name="text" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$"><br><br>
-        <input type="submit" value="Submit"><br><br>
+        <label for="text1">Enter text you want to encode: </label><br><br>
+        <textarea name="text" placeholder="Enter text here..." rows="10" cols="30"></textarea><br>
+
+        <input type="submit" value="Submit"><br>
 
 
 
@@ -101,7 +100,7 @@
 if(isset($_GET['text'])){
 
     $phrase=$_GET["text"];
-    
+
     if($phrase == "") {
 
         echo '<script>alert("The input must not be empty!")</script>';
@@ -177,7 +176,8 @@ if(isset($_GET['text'])){
             "," => "--..--",
             "?" => "..--..",
             "/" => "-..-.",
-            " " => " ");
+            " " => " ",
+            "\n" =>"\n");
 
         $morse = $table[$item];
 
@@ -186,6 +186,7 @@ if(isset($_GET['text'])){
 }
 ?>
 <html>
-<input type="text" value="<?php echo array_reduce(str_split("$phrase"), $convert); ?>" />
+<!--input class="article-input" id="article-input" type="text" rows="5" value="<?php echo array_reduce(str_split("$phrase"), $convert); ?>" /-->
+<textarea class="article-input" id="article-input" type="text" rows="10" cols="30" ><?php echo array_reduce(str_split("$phrase"), $convert); ?></textarea>
 
 </html>
