@@ -15,7 +15,9 @@
         font-family: "Cinzel Decorative", serif;
         font-size: 112.5%;
         text-align: center;
-        font-weight: 700; /* should be used since you refer to 700 weight typeface */
+        font-weight: 700;
+
+
     }
 
 
@@ -61,6 +63,9 @@
 
     }
 
+
+
+
 </style>
 
 
@@ -78,10 +83,12 @@
         <input class="button1" type ="button" value="Morse code" onclick=""><input type ="button" value="Caesar cipher" onclick=""><input type ="button" value="Affine cipher" onclick=""><br><br>
         <label for="text1">Enter text you want to translate: </label><br>
         <input type="text" name="text" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$"><br>
-        <input type="submit" value="submit">
+
+<input type="submit" value="Submit">
+
     </form>
 
-
+</div>
 </div>
 
 </body>
@@ -90,7 +97,15 @@
 
 <?php
 $phrase=$_GET["text"];
-echo $phrase . " " . "Morse code: ";
+
+
+if($phrase == "") {
+
+    echo '<script>alert("The input must not be empty!")</script>';
+
+} else
+
+echo "Morse code: ";
 
 
 $convert = function($carry, $item) {
