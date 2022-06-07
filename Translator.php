@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <style>
+    @import url("http://fonts.googleapis.com/css?family=Cinzel+Decorative:700");
     body {
+
+
         background: linear-gradient(-45deg, #87E879, #E1A6E3, #BF90E8,#8AC1E3);
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;
         height: 100vh;
+
+        font-family: "Cinzel Decorative", serif;
+        font-size: 112.5%;
+        text-align: center;
+        font-weight: 700; /* should be used since you refer to 700 weight typeface */
     }
 
 
@@ -23,6 +32,8 @@
 
     }
 
+
+
     input[type=text], select {
         width: 30%;
         padding: 12px 20px;
@@ -31,26 +42,17 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
+
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        text-align: center;
+        font-size: 18px;
+        color: #676767;
     }
     input[type=text]:focus {
-        background-color: lightblue;
+        background-color: white;
 
-    input[type=submit] {
-        width: 100%;
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    input[type=text]:focus {
-        background-color: dodgerblue;
 
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
 
     div {
         border-radius: 5px;
@@ -59,31 +61,37 @@
 
     }
 
-
-
-
 </style>
+
+
+
 
 <body>
 
-
-<h1>Morse code translator</h1>
+<h1>CIPHER DECODER</h1>
 
 <div>
+    <form method="get" action="">
 
-    <form action="/action_page.php" method="POST">
-        <button><span>Home</span></button><button><span>Morse code</span></button><button><span>Caesar code</span></button><br><br>
+
+
+        <input class="button1" type ="button" value="Morse code" onclick=""><input type ="button" value="Caesar cipher" onclick=""><input type ="button" value="Affine cipher" onclick=""><br><br>
         <label for="text1">Enter text you want to translate: </label><br>
-        <input type="text" name="text" id="text" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$"><br>
-        <input type="submit" name="submit" id="submit" value="Submit" />
-
+        <input type="text" name="text" placeholder="Enter text here" pattern="^[a-zA-Z0-9\d\ ?.,\s]+$"><br>
+        <input type="submit" value="submit">
     </form>
+
+
 </div>
 
 </body>
 </html>
 
+
 <?php
+$phrase=$_GET["text"];
+echo $phrase . " " . "Morse code: ";
+
 
 $convert = function($carry, $item) {
     $table = array(
@@ -134,4 +142,5 @@ $convert = function($carry, $item) {
     return $carry . $morse;
 };
 
-echo array_reduce(str_split('human'), $convert);
+echo array_reduce(str_split("$phrase"), $convert);
+?>
