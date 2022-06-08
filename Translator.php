@@ -93,9 +93,7 @@ Buttons
 }
 
 
-
-
-.button-sub {
+.button_sub {
     border: 5em;
     cursor: pointer;
     outline: none;
@@ -113,7 +111,7 @@ Buttons
 }
 
 }
-    .button-sub:after {
+    .button_sub:after {
         content: "";
         border-radius: 18px;
         position: absolute;
@@ -126,12 +124,15 @@ Buttons
         background: #0e0e10;
     }
 
-    .button-sub:hover {
+    .button_sub:hover {
         background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
         box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
     }
 
+.button_save {
+    margin-left: 650px;
 
+}
 
 /*
 text areas
@@ -177,11 +178,14 @@ text areas
         <input class="button1" type ="button" value="Morse code" onclick="">&nbsp&nbsp
         <input class="button2" type ="button" value="Caesar cipher" onclick="">&nbsp&nbsp
         <input class="button3" type ="button" value="Affine cipher" onclick=""><br><br><br><br>
-        <label for="text1">Enter text you want to encode: </label><br><br><br>
-        <textarea class="area1" name="text1" id="text1" placeholder="Hello World" rows="10" cols="30"></textarea>&nbsp &nbsp &nbsp
-        <textarea readonly="readonly" class="area2" name="text2" id="text2" rows="10" cols="30" placeholder=".... . .-.. .-.. --- / .-- --- .-. .-.. -.."></textarea><br><br><br>
 
-         <input class="button-sub" type="submit" value="Submit">
+        <label for="text1">Enter text you want to encode: </label><br><br><br>
+
+        <textarea class="area1" name="text1" id="text1" placeholder="Hello World" rows="10" cols="30"></textarea>&nbsp &nbsp &nbsp
+        <textarea readonly="readonly" class="area2" name="text2" id="text2" rows="10" cols="30" placeholder=".... . .-.. .-.. --- / .-- --- .-. .-.. -.."></textarea><br>
+        <button class="button_save" onclick=saveTextAsFile(text2.value,'download.txt')>Download</button><br><br>
+
+         <input class="button_sub" type="submit" value="Submit">
 
 
 
@@ -198,16 +202,16 @@ text areas
 
 <?php
 
-if(isset($_GET['text1'])){
+if(isset($_GET['text1'])) {
 
-    $phrase=$_GET["text1"];
+    $phrase = $_GET["text1"];
+    /*
+        if($phrase == "") {
 
-    if($phrase == "") {
+            echo '<script>alert("The input must not be empty!")</script>';
 
-        echo '<script>alert("The input must not be empty!")</script>';
-
-    } else
-
+        } else
+    */
 
     $convert = function ($carry, $item) {
         $table = array(
@@ -280,11 +284,9 @@ if(isset($_GET['text1'])){
             " " => "     ");
 
 
-
-
         $morse = $table[$item];
 
-        return $carry. $morse;
+        return $carry . $morse;
     };
 }
 ?>
@@ -295,3 +297,24 @@ if(isset($_GET['text1'])){
 </script>
 
 </html>
+<script>
+function saveTextAsFile(textToWrite, fileNameToSaveAs)
+       {
+        var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+        var downloadLink = document.createElement("a");
+         downloadLink.download = fileNameToSaveAs;
+         downloadLink.innerHTML = "Download File";
+            if (window.webkitURL != null)
+               {
+                   //chrome
+                 downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+               } else
+                     {
+                        // Firefox
+                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                downloadLink.onclick = destroyClickedElement;
+                downloadLink.style.display = "none";
+                document.body.appendChild(downloadLink);
+                     } downloadLink.click();
+        }
+</script>
