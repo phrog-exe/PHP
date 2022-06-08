@@ -179,7 +179,7 @@ text areas
         <input class="button3" type ="button" value="Affine cipher" onclick=""><br><br><br><br>
         <label for="text1">Enter text you want to encode: </label><br><br><br>
         <textarea class="area1" name="text1" id="text1" placeholder="Hello World" rows="10" cols="30"></textarea>&nbsp &nbsp &nbsp
-        <textarea class="area2" name="text2" id="text2" rows="10" cols="30" placeholder=".... . .-.. .-.. --- / .-- --- .-. .-.. -.."></textarea><br><br><br>
+        <textarea readonly="readonly" class="area2" name="text2" id="text2" rows="10" cols="30" placeholder=".... . .-.. .-.. --- / .-- --- .-. .-.. -.."></textarea><br><br><br>
 
          <input class="button-sub" type="submit" value="Submit">
 
