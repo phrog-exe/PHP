@@ -135,13 +135,16 @@
 
         .button_save {
 
-            margin-bottom: 500px;
-            
+position: fixed;
+            top: 615px;
+            right: 260px;
+
         }
 
         .button_up {
 
-            margin-right: 1000px;
+         position: fixed;
+            left: 260px;
             color: white;
 
         }
