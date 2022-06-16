@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <link rel="stylesheet"
@@ -135,7 +136,7 @@
 
         .button_save {
 
-position: fixed;
+            position: fixed;
             top: 615px;
             right: 260px;
 
@@ -143,7 +144,7 @@ position: fixed;
 
         .button_up {
 
-         position: fixed;
+            position: fixed;
             left: 260px;
             color: white;
 
@@ -217,23 +218,23 @@ position: fixed;
 
         <label class="label1" for="text1">Enter text you want to encode: </label><br><br>
 
-        <textarea class="area1" name="text1" id="text1" placeholder="Hello World" rows="10" cols="50"></textarea>&nbsp &nbsp &nbsp
-        <textarea readonly="readonly" class="area2" name="text2" id="text2" rows="10" cols="50" placeholder=".... . .-.. .-.. --- / .-- --- .-. .-.. -.."></textarea><br>
+        <textarea class="area1" name="text1" id="text1" rows="10" cols="50"></textarea>&nbsp &nbsp &nbsp
+        <textarea  class="area2" name="text2" id="text2" rows="10" cols="50" ></textarea><br>
 
 
         <input class="button_up" type="file" name="inputfile"
                id="inputfile">
         <br>
 
-        <pre id="output"></pre>
+
 
         <script type="text/javascript">
             document.getElementById('inputfile')
                 .addEventListener('change', function() {
 
-                    var fr=new FileReader();
+                    var fr = new FileReader();
                     fr.onload=function(){
-                        document.getElementById('text1')
+                         document.getElementById('text1')
                             .textContent=fr.result;
                     }
 
@@ -262,98 +263,99 @@ position: fixed;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // collect value of input field
-    $phrase = $_POST['text1'];
+    $word = $_POST['text1'];
+    $word2 = $_POST['text2'];
 
-        if($phrase == "") {
-            echo '<script>alert("The input must not be empty!")</script>';
-        } else
-
-
-    $convert = function ($carry, $item) {
-        $table = array(
-            "a" => ".- ",
-            "b" => "-... ",
-            "c" => "-.-. ",
-            "d" => "-.. ",
-            "e" => ". ",
-            "f" => "..-. ",
-            "g" => "--. ",
-            "h" => ".... ",
-            "i" => ".. ",
-            "j" => ".--- ",
-            "k" => "-.- ",
-            "l" => ".-.. ",
-            "m" => "-- ",
-            "n" => "-. ",
-            "o" => "--- ",
-            "p" => ".--. ",
-            "q" => "--.- ",
-            "r" => ".-. ",
-            "s" => "... ",
-            "t" => "- ",
-            "u" => "..- ",
-            "v" => "...- ",
-            "w" => ".-- ",
-            "x" => "-..- ",
-            "y" => "-.-- ",
-            "z" => "--.. ",
-            "A" => ".- ",
-            "B" => "-... ",
-            "C" => "-.-. ",
-            "D" => "-.. ",
-            "E" => ". ",
-            "F" => "..-. ",
-            "G" => "--. ",
-            "H" => ".... ",
-            "I" => ".. ",
-            "J" => ".--- ",
-            "K" => "-.- ",
-            "L" => ".-.. ",
-            "M" => "-- ",
-            "N" => "-. ",
-            "O" => "--- ",
-            "P" => ".--. ",
-            "Q" => "--.- ",
-            "R" => ".-. ",
-            "S" => "... ",
-            "T" => "- ",
-            "U" => "..- ",
-            "V" => "...- ",
-            "W" => ".-- ",
-            "X" => "-..- ",
-            "Y" => "-.-- ",
-            "Z" => "--.. ",
-            "0" => "----- ",
-            "1" => ".---- ",
-            "2" => "..--- ",
-            "3" => "...-- ",
-            "4" => "....- ",
-            "5" => "..... ",
-            "6" => "-.... ",
-            "7" => "--... ",
-            "8" => "---.. ",
-            "9" => "----. ",
-            "." => ".-.-.- ",
-            "," => "--..-- ",
-            "?" => "..--.. ",
-            "/" => "-..-. ",
-            " " => "     ");
+    if($word == "" && $word2 == "") {
+        echo '<script>alert("The input must not be empty!")</script>';
+    }
 
 
-        $morse = $table[$item];
 
-        return $carry . $morse;
-    };
+
+    function get_morse() {
+
+    return array(
+            "\n" => "\n",
+            " " => "     ",
+        "a" => "*- ",
+        "b" => "-*** ",
+        "c" => "-*-* ",
+        "d" => "-** ",
+        "e" => "* ",
+        "f" => "**-* ",
+        "g" => "--* ",
+        "h" => "**** ",
+        "i" => "** ",
+        "j" => "*--- ",
+        "k" => "-*- ",
+        "l" => "*-** ",
+        "m" => "-- ",
+        "n" => "-* ",
+        "o" => "--- ",
+        "p" => "*--* ",
+        "q" => "--*- ",
+        "r" => "*-* ",
+        "s" => "*** ",
+        "t" => "- ",
+        "u" => "**- ",
+        "v" => "***- ",
+        "w" => "*-- ",
+        "x" => "-**- ",
+        "y" => "-*-- ",
+        "z" => "--** ",
+        "A" => "|*- ",
+        "B" => "|-*** ",
+        "C" => "|-*-* ",
+        "D" => "|-** ",
+        "E" => "|* ",
+        "F" => "|**-* ",
+        "G" => "|--* ",
+        "H" => "|**** ",
+        "I" => "|** ",
+        "J" => "|*--- ",
+        "K" => "|-*- ",
+        "L" => "|*-** ",
+        "M" => "|-- ",
+        "N" => "|-* ",
+        "O" => "|--- ",
+        "P" => "|*--* ",
+        "Q" => "|--*- ",
+        "R" => "|*-* ",
+        "S" => "|*** ",
+        "T" => "|- ",
+        "U" => "|**- ",
+        "V" => "|***- ",
+        "W" => "|*-- ",
+        "X" => "|-**- ",
+        "Y" => "|-*-- ",
+        "Z" => "|--** ");
+}
+
+function morse_encoder($word) {
+    return str_replace(array_keys(get_morse()), get_morse(), $word);
+}
+
+function morse_decoder($word) {
+    $morse = array_map("trim", get_morse());
+    $output = "";
+    foreach (explode(" ", $word) as $value) {
+        $output .= array_search($value, $morse);
+    }
+    return $output;
+}
+
 }
 ?>
 
 
 
 
-<html><script>
-    document.getElementById('text1').value ="<?php echo $phrase;?>";
+<html>
+<script>
+    document.getElementById('text1').value ="<?php echo $word;?>";
+    document.getElementById('text2').value ="<?php echo morse_decoder($word) ."". morse_encoder($word)?>";
 
-    document.getElementById('text2').value ="<?php echo array_reduce(str_split("$phrase"), $convert); ?>";
 
 </script>
 
